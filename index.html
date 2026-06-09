@@ -1,133 +1,359 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sharma's Private Portal</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sharma Private Portal</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
 body{
-    min-height:100vh;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+font-family:Segoe UI,sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
 }
 
-.container{
-    width:100%;
-    max-width:500px;
-    background:rgba(255,255,255,0.2);
-    backdrop-filter:blur(15px);
-    border-radius:25px;
-    padding:30px;
-    text-align:center;
-    box-shadow:0 8px 30px rgba(0,0,0,0.2);
+.box{
+width:100%;
+max-width:500px;
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,0,0,.2);
 }
 
-h1{
-    color:#fff;
-    margin-bottom:10px;
+h1,h2{color:white}
+
+input{
+width:90%;
+padding:12px;
+margin:8px;
+border:none;
+border-radius:10px;
 }
 
-h2{
-    color:#fff;
-    margin-bottom:20px;
-    font-weight:400;
-}
-
-.card{
-    background:white;
-    padding:15px;
-    margin:10px 0;
-    border-radius:15px;
-    cursor:pointer;
-    transition:0.3s;
-    font-weight:bold;
-}
-
-.card:hover{
-    transform:scale(1.05);
+button,.option,.card{
+width:90%;
+padding:12px;
+margin:10px auto;
+border:none;
+border-radius:12px;
+cursor:pointer;
+display:block;
+font-weight:bold;
 }
 
 button{
-    background:#ff4f81;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:30px;
-    font-size:16px;
-    cursor:pointer;
+background:#ff4f81;
+color:white;
+}
+
+.option,.card{
+background:white;
+}
+
+.option:hover,.card:hover{
+transform:scale(1.03);
 }
 
 .hidden{
-    display:none;
+display:none;
 }
 
-.option{
-    background:white;
-    padding:12px;
-    margin:10px 0;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-.option:hover{
-    background:#ffe4ef;
+#result{
+color:white;
+font-size:18px;
+margin-top:15px;
+font-weight:bold;
 }
 </style>
 </head>
+
 <body>
 
-<div class="container">
+<div class="box">
 
-<div id="welcome">
+<!-- LOGIN -->
+
+<div id="login">
+<h1>🔐 Private Login</h1>
+
+<input id="user" placeholder="Username">
+
+<input id="pass" type="password"
+placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p style="color:white">
+Only Authorized Users
+</p>
+</div>
+
+<!-- WELCOME -->
+
+<div id="welcome" class="hidden">
 <h1>🌸 Welcome Sharma 🌸</h1>
 <h2>Your Private Premium Portal</h2>
-<button onclick="next1()">Continue</button>
+
+<button onclick="openMood()">
+Continue
+</button>
 </div>
+
+<!-- MOOD -->
 
 <div id="mood" class="hidden">
+
 <h1>😊 How Are You Today?</h1>
 
-<div class="option" onclick="next2()">Happy 😊</div>
-<div class="option" onclick="next2()">Normal 😌</div>
-<div class="option" onclick="next2()">Tired 😴</div>
-<div class="option" onclick="next2()">Need Care 💖</div>
+<div class="option" onclick="openReason()">
+Happy 😊
 </div>
+
+<div class="option" onclick="openReason()">
+Normal 😌
+</div>
+
+<div class="option" onclick="openReason()">
+Tired 😴
+</div>
+
+<div class="option" onclick="openReason()">
+Need Care 💖
+</div>
+
+</div>
+
+<!-- REASON -->
 
 <div id="reason" class="hidden">
+
 <h1>💌 Why Did You Reach This Page?</h1>
 
-<div class="option">🎟️ Make Booking</div>
-<div class="option">🎁 Scratch Card</div>
-<div class="option">💌 Special Message</div>
-<div class="option">🎉 Surprise</div>
+<div class="option"
+onclick="showBooking()">
+🎟️ Make Booking
 </div>
+
+<div class="option"
+onclick="showScratch()">
+🎁 Scratch Card
+</div>
+
+<div class="option"
+onclick="specialMessage()">
+💌 Special Message
+</div>
+
+<div class="option"
+onclick="surpriseReward()">
+🎉 Surprise
+</div>
+
+</div>
+
+<!-- BOOKING -->
+
+<div id="booking" class="hidden">
+
+<h1>🎟️ Booking Center</h1>
+
+<div class="option"
+onclick="answer('🗣️ Talk Request Submitted')">
+I Need To Talk
+</div>
+
+<div class="option"
+onclick="answer('⏰ Time Request Submitted')">
+I Need Your Time
+</div>
+
+<div class="option"
+onclick="answer('🚶 Outing Request Submitted')">
+I Want To Go Out
+</div>
+
+<div class="option"
+onclick="answer('☕ Coffee Date Requested')">
+Coffee Date
+</div>
+
+<div class="option"
+onclick="answer('🎬 Movie Time Requested')">
+Movie Time
+</div>
+
+<div class="option"
+onclick="answer('🛍️ Shopping Time Requested')">
+Shopping Time
+</div>
+
+<div class="option"
+onclick="answer('🤗 Hug Request Sent')">
+Need A Hug
+</div>
+
+<button onclick="backReason()">
+Back
+</button>
+
+</div>
+
+<!-- SCRATCH -->
+
+<div id="scratch" class="hidden">
+
+<h1>🎁 Why Do You Need A Scratch Card?</h1>
+
+<div class="option"
+onclick="openCards()">
+😔 Mood Off
+</div>
+
+<div class="option"
+onclick="openCards()">
+🌪️ Mood Swings
+</div>
+
+<div class="option"
+onclick="openCards()">
+😴 Feeling Tired
+</div>
+
+<div class="option"
+onclick="openCards()">
+🥺 Need Some Care
+</div>
+
+<button onclick="backReason()">
+Back
+</button>
+
+</div>
+
+<!-- CARDS -->
+
+<div id="cards" class="hidden">
+
+<h1>🎁 Choose Card</h1>
+
+<div class="card"
+onclick="answer('🌸 Normal Reward: Sweet Message + Virtual Hug')">
+Normal
+</div>
+
+<div class="card"
+onclick="answer('💖 Premium Reward: Coffee Treat + Long Call')">
+Premium
+</div>
+
+<div class="card"
+onclick="answer('👑 Premium Plus Reward: VIP Day + Surprise Gift')">
+Premium Plus
+</div>
+
+<button onclick="showScratch()">
+Back
+</button>
+
+</div>
+
+<div id="result"></div>
 
 </div>
 
 <script>
 
-function next1(){
-document.getElementById("welcome").classList.add("hidden");
-document.getElementById("mood").classList.remove("hidden");
+function login(){
+
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
+
+if(
+(u=="sharma" && p=="1234")
+||
+(u=="vikas" && p=="1234")
+){
+
+document.getElementById("login").classList.add("hidden");
+document.getElementById("welcome").classList.remove("hidden");
+
+}
+else{
+alert("Invalid Login");
+}
 }
 
-function next2(){
-document.getElementById("mood").classList.add("hidden");
-document.getElementById("reason").classList.remove("hidden");
+function openMood(){
+welcome.classList.add("hidden");
+mood.classList.remove("hidden");
+}
+
+function openReason(){
+mood.classList.add("hidden");
+reason.classList.remove("hidden");
+}
+
+function showBooking(){
+reason.classList.add("hidden");
+booking.classList.remove("hidden");
+}
+
+function showScratch(){
+reason.classList.add("hidden");
+cards.classList.add("hidden");
+scratch.classList.remove("hidden");
+}
+
+function openCards(){
+scratch.classList.add("hidden");
+cards.classList.remove("hidden");
+}
+
+function backReason(){
+booking.classList.add("hidden");
+scratch.classList.add("hidden");
+cards.classList.add("hidden");
+reason.classList.remove("hidden");
+}
+
+function answer(msg){
+document.getElementById("result").innerHTML=msg;
+}
+
+function specialMessage(){
+
+document.getElementById("result").innerHTML=
+"💖 You are important, appreciated and cared for today.";
+}
+
+function surpriseReward(){
+
+let rewards=[
+"☕ Free Coffee",
+"🍦 Ice Cream",
+"🎬 Movie Night",
+"📞 Long Call",
+"🎁 Secret Gift",
+"👑 VIP Pass"
+];
+
+let r=rewards[Math.floor(Math.random()*rewards.length)];
+
+document.getElementById("result").innerHTML=
+"🎉 Surprise Reward: "+r;
 }
 
 </script>
 
 </body>
 </html>
+```
