@@ -3,29 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sharma Premium Portal</title>
+<title>Sharma Private Portal</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Segoe UI;
+font-family:'Segoe UI',sans-serif;
 background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
-padding:15px;
+padding:20px;
 }
 
 .box{
 width:100%;
-max-width:650px;
-background:rgba(255,255,255,0.15);
+max-width:700px;
+background:rgba(255,255,255,.15);
 backdrop-filter:blur(15px);
 border-radius:25px;
-padding:20px;
+padding:25px;
 text-align:center;
+}
+
+.hidden{
+display:none;
 }
 
 h1,h2,p{
@@ -41,23 +45,19 @@ border-radius:12px;
 }
 
 button{
-padding:12px 25px;
-border:none;
-border-radius:25px;
 background:#ff4f81;
 color:white;
+border:none;
+padding:12px 25px;
+border-radius:25px;
 cursor:pointer;
 margin:5px;
-}
-
-.hidden{
-display:none;
 }
 
 .option{
 background:white;
 padding:12px;
-margin:10px 0;
+margin:10px;
 border-radius:15px;
 cursor:pointer;
 font-weight:bold;
@@ -78,20 +78,20 @@ padding:10px;
 margin:10px;
 border-radius:15px;
 cursor:pointer;
-font-weight:bold;
 border:3px solid #222;
+font-weight:bold;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-10px);
 }
 
 .card-top{
-font-size:24px;
+font-size:25px;
 }
 
 .card-bottom{
-font-size:24px;
+font-size:25px;
 transform:rotate(180deg);
 }
 
@@ -101,7 +101,7 @@ color:white;
 }
 
 .section{
-background:rgba(255,255,255,0.15);
+background:rgba(255,255,255,.15);
 padding:10px;
 margin:8px 0;
 border-radius:12px;
@@ -121,8 +121,8 @@ margin-top:10px;
 
 #result{
 color:white;
-margin-top:15px;
 font-size:18px;
+margin-top:15px;
 }
 
 </style>
@@ -133,11 +133,13 @@ font-size:18px;
 <div class="box">
 
 <!-- LOGIN -->
+
 <div id="loginPage">
 
 <h1>🔐 Login</h1>
 
 <input id="user" placeholder="Username">
+
 <input id="pass" type="password" placeholder="Password">
 
 <button onclick="loginUser()">Login</button>
@@ -145,25 +147,33 @@ font-size:18px;
 </div>
 
 <!-- WELCOME -->
+
 <div id="welcome" class="hidden">
 
 <h1>🌸 Welcome Sharma 🌸</h1>
 
 <p>This portal was specially created for you.</p>
+
 <p>Your happiness matters here.</p>
+
+<p>Choose anything you need and enjoy your VIP access. 💖</p>
 
 <button onclick="openMood()">Continue</button>
 
 </div>
 
 <!-- MOOD -->
+
 <div id="mood" class="hidden">
 
 <h1>😊 How Are You Today?</h1>
 
 <div class="option" onclick="openReason()">Happy 😊</div>
+
 <div class="option" onclick="openReason()">Normal 😌</div>
+
 <div class="option" onclick="openReason()">Tired 😴</div>
+
 <div class="option" onclick="openReason()">Need Care 💖</div>
 
 <button onclick="goBack('welcome','mood')">⬅ Back</button>
@@ -171,11 +181,13 @@ font-size:18px;
 </div>
 
 <!-- REASON -->
+
 <div id="reason" class="hidden">
 
 <h1>💌 Why Did You Reach This Page?</h1>
 
 <div class="option" onclick="openBooking()">🎟️ Make Booking</div>
+
 <div class="option" onclick="openScratch()">🎁 Scratch Card</div>
 
 <button onclick="goBack('mood','reason')">⬅ Back</button>
@@ -183,29 +195,29 @@ font-size:18px;
 </div>
 
 <!-- BOOKING -->
+
 <div id="booking" class="hidden">
 
-<h1>🎟️ Make Booking</h1>
+<h1>🎟️ Booking Options</h1>
 
-<div class="option" onclick="setType('Talk')">🗣️ I Need To Talk</div>
+<div class="option" onclick="bookService('I Need To Talk')">🗣️ I Need To Talk</div>
 
-<div class="option" onclick="setType('Time')">⏰ I Need Your Time</div>
+<div class="option" onclick="bookService('I Need Your Time')">⏰ I Need Your Time</div>
 
-<div class="option" onclick="setType('Out')">🚶 I Want To Go Out</div>
+<div class="option" onclick="bookService('I Want To Go Out')">🚶 I Want To Go Out</div>
 
-<div class="option" onclick="setType('Coffee')">☕ Coffee Date</div>
+<div class="option" onclick="bookService('Coffee Date')">☕ Coffee Date</div>
 
-<div class="option" onclick="setType('Movie')">🎬 Movie Time</div>
+<div class="option" onclick="bookService('Movie Time')">🎬 Movie Time</div>
 
-<div class="option" onclick="setType('Hug')">🤗 Need A Hug</div>
-
-<button onclick="openAppointment()">Continue</button>
+<div class="option" onclick="bookService('Need A Hug')">🤗 Need A Hug</div>
 
 <button onclick="goBack('reason','booking')">⬅ Back</button>
 
 </div>
 
 <!-- APPOINTMENT -->
+
 <div id="appointment" class="hidden">
 
 <h1>📅 Appointment Booking</h1>
@@ -214,18 +226,19 @@ font-size:18px;
 
 <input type="time" id="time">
 
-<textarea id="note" placeholder="Write Note"></textarea>
+<textarea id="note" placeholder="Write Your Message"></textarea>
 
 <button onclick="openPayment()">Continue</button>
 
-<button onclick="goBack('booking','appointment')">⬅ Back</button>
+<button onclick="goBackPrevious()">⬅ Back</button>
 
 </div>
 
 <!-- PAYMENT -->
+
 <div id="payment" class="hidden">
 
-<h1>💳 Payment</h1>
+<h1>💳 Make Payment</h1>
 
 <select>
 <option>UPI</option>
@@ -233,13 +246,14 @@ font-size:18px;
 <option>Cash</option>
 </select>
 
-<button onclick="confirmBooking()">Confirm Booking</button>
+<button onclick="confirmBooking()">Confirm Order</button>
 
 <button onclick="goBack('appointment','payment')">⬅ Back</button>
 
 </div>
 
-<!-- SCRATCH -->
+<!-- SCRATCH CARDS -->
+
 <div id="scratch" class="hidden">
 
 <h1>🎴 Choose Your Card</h1>
@@ -267,13 +281,15 @@ font-size:18px;
 </div>
 
 <!-- CARD DETAILS -->
-<div id="cardDetails" class="hidden"></div>
 
-<!-- RESULT -->
-<div id="result"></div>
+<div id="cardDetails" class="hidden"></div>
+</div>
+
 <script>
 
 let bookingType="";
+let selectedCard="";
+let previousPage="";
 
 // LOGIN
 function loginUser(){
@@ -297,80 +313,68 @@ alert("Wrong Username or Password");
 
 // FLOW
 function openMood(){
+
 welcome.style.display="none";
 mood.style.display="block";
+
 }
 
 function openReason(){
+
 mood.style.display="none";
 reason.style.display="block";
+
 }
 
 function openBooking(){
+
 reason.style.display="none";
 booking.style.display="block";
+
 }
 
 function openScratch(){
+
 reason.style.display="none";
 scratch.style.display="block";
+
 }
 
-// BOOKING
-function setType(type){
-bookingType=type;
-}
+// BOOKING SERVICES
 
-function openAppointment(){
+function bookService(service){
+
+bookingType=service;
+
+previousPage="booking";
+
 booking.style.display="none";
 appointment.style.display="block";
+
 }
+
+// APPOINTMENT
 
 function openPayment(){
+
 appointment.style.display="none";
 payment.style.display="block";
-}
-
-// CONFIRM
-function confirmBooking(){
-
-let d=document.getElementById("date").value;
-let t=document.getElementById("time").value;
-
-payment.style.display="none";
-
-document.getElementById("result").innerHTML=`
-<h2>✅ Booking Confirmed</h2>
-
-<p>Service: ${bookingType}</p>
-
-<p>Date: ${d}</p>
-
-<p>Time: ${t}</p>
-
-<p>💖 Thank You</p>
-`;
-}
-
-// BACK
-function goBack(show,hide){
-
-document.getElementById(hide).style.display="none";
-
-document.getElementById(show).style.display="block";
 
 }
 
 // CARD SYSTEM
+
 function showCard(type){
+
+selectedCard=type;
 
 scratch.style.display="none";
 cardDetails.style.display="block";
 
 let html="";
 
-// NORMAL
-if(type=="normal"){
+// NORMAL CARD
+if(type==="normal"){
 
 html=`
 
@@ -379,21 +383,16 @@ html=`
 <h2>🌸 NORMAL CARD BENEFITS</h2>
 
 <div class="section">💖 Understanding Your Feelings</div>
-
 <div class="section">😊 Helping Improve Your Mood</div>
-
 <div class="section">🌟 Motivation & Encouragement</div>
-
 <div class="section">🤝 Making Sure You Don't Feel Alone</div>
-
 <div class="section">💬 Understanding & Meaningful Conversations</div>
-
 <div class="section">🗣️ Fun & Casual Conversations</div>
 
 <hr>
 
 <div class="quote">
-Understanding, motivation, and positive conversations whenever you need them. ✨
+"Understanding, motivation, and positive conversations whenever you need them." ✨
 </div>
 
 <div class="helpline">
@@ -404,12 +403,16 @@ Understanding, motivation, and positive conversations whenever you need them. �
 
 <button onclick="backToCards()">⬅ Back</button>
 
+<button onclick="continueCard()">✅ Continue</button>
+
 </div>
+
 `;
+
 }
 
-// PREMIUM
-if(type=="premium"){
+// PREMIUM CARD
+if(type==="premium"){
 
 html=`
 
@@ -418,33 +421,22 @@ html=`
 <h2>💎 PREMIUM CARD BENEFITS</h2>
 
 <div class="section">📞 Voice & Video Call Support</div>
-
 <div class="section">⏳ Long Voice & Video Calls</div>
-
 <div class="section">💖 Deep Listening Without Judgment</div>
-
 <div class="section">🌸 Calm Emotional Support</div>
-
 <div class="section">🤗 Always There For Comfort</div>
-
 <div class="section">😊 Positive Conversations & Mood Boost</div>
-
 <div class="section">🎵 Music & Feel-Good Sharing</div>
-
 <div class="section">💌 Caring Messages Anytime</div>
-
 <div class="section">🌟 Motivation & Emotional Support</div>
-
 <div class="section">❤️ Priority Attention</div>
-
 <div class="section">🌷 Gentle Care & Support</div>
-
 <div class="section">✨ Respect & Emotional Stability</div>
 
 <hr>
 
 <div class="quote">
-More time, more care, and more understanding whenever you need it. 💖
+"More time, more care, and more understanding whenever you need it." 💖
 </div>
 
 <div class="helpline">
@@ -455,12 +447,16 @@ More time, more care, and more understanding whenever you need it. 💖
 
 <button onclick="backToCards()">⬅ Back</button>
 
+<button onclick="continueCard()">✅ Continue</button>
+
 </div>
+
 `;
+
 }
 
 // PREMIUM+
-if(type=="plus"){
+if(type==="plus"){
 
 html=`
 
@@ -469,23 +465,17 @@ html=`
 <h2>👑 PREMIUM+ CARD BENEFITS</h2>
 
 <div class="section">📍 Exclusive Personal Meet-Up Experience</div>
-
 <div class="section">🤝 One-to-One Comfortable Time</div>
-
 <div class="section">🌸 Real Connection & Understanding</div>
-
 <div class="section">😊 Positive Company & Good Vibes</div>
-
 <div class="section">🌟 Emotional Support in Person</div>
-
 <div class="section">❤️ Respectful Interaction</div>
-
 <div class="section">✨ Private & Quality Time</div>
 
 <hr>
 
 <div class="quote">
-A premium real-life experience built on comfort, respect, and genuine connection. ✨
+"A premium real-life experience built on comfort, respect, and genuine connection." ✨
 </div>
 
 <div class="helpline">
@@ -496,15 +486,32 @@ A premium real-life experience built on comfort, respect, and genuine connection
 
 <button onclick="backToCards()">⬅ Back</button>
 
+<button onclick="continueCard()">✅ Continue</button>
+
 </div>
+
 `;
+
 }
 
 cardDetails.innerHTML=html;
 
 }
 
+// CONTINUE AFTER CARD
+
+function continueCard(){
+
+previousPage="scratch";
+
+cardDetails.style.display="none";
+
+appointment.style.display="block";
+
+}
+
 // BACK TO CARDS
+
 function backToCards(){
 
 cardDetails.style.display="none";
@@ -513,7 +520,65 @@ scratch.style.display="block";
 
 }
 
+// BACK FROM APPOINTMENT
+
+function goBackPrevious(){
+
+appointment.style.display="none";
+
+if(previousPage==="booking"){
+booking.style.display="block";
+}
+else{
+scratch.style.display="block";
+}
+
+}
+
+// COMMON BACK
+
+function goBack(show,hide){
+
+document.getElementById(hide).style.display="none";
+
+document.getElementById(show).style.display="block";
+
+}
+
+// CONFIRM ORDER
+
+function confirmBooking(){
+
+let d=document.getElementById("date").value;
+let t=document.getElementById("time").value;
+let n=document.getElementById("note").value;
+
+payment.style.display="none";
+
+document.getElementById("result").innerHTML=`
+
+<h2>✅ Order Confirmed</h2>
+
+<p><b>Selected Card:</b> ${selectedCard || "No Card Selected"}</p>
+
+<p><b>Booking Type:</b> ${bookingType || "Not Selected"}</p>
+
+<p><b>Date:</b> ${d}</p>
+
+<p><b>Time:</b> ${t}</p>
+
+<p><b>Message:</b> ${n}</p>
+
+<p>💖 Thank You For Booking</p>
+
+`;
+
+}
+
 </script>
 
 </body>
 </html>
+<!-- RESULT -->
+
+<div id="result"></div>
