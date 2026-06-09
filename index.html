@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sharma Private Portal</title>
+<title>Sharma Premium Portal</title>
 
 <style>
 body{
@@ -19,7 +19,7 @@ padding:15px;
 
 .box{
 width:100%;
-max-width:550px;
+max-width:600px;
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(15px);
 border-radius:20px;
@@ -29,7 +29,7 @@ text-align:center;
 
 h1,h2,p{color:white}
 
-input,textarea{
+input,textarea,select{
 width:90%;
 padding:10px;
 margin:8px;
@@ -44,7 +44,7 @@ border-radius:20px;
 background:#ff4f81;
 color:white;
 cursor:pointer;
-margin-top:10px;
+margin:5px;
 }
 
 .hidden{display:none}
@@ -60,31 +60,20 @@ font-weight:bold;
 
 .option:hover{transform:scale(1.03)}
 
-.card{
-width:120px;
-height:180px;
-background:white;
-border-radius:15px;
-display:inline-flex;
-flex-direction:column;
-justify-content:space-between;
-padding:10px;
-margin:10px;
-cursor:pointer;
-border:3px solid #222;
-}
-
-.card:hover{transform:translateY(-10px)}
-
-.card-top,.card-bottom{font-size:20px}
-.card-bottom{transform:rotate(180deg)}
-
-#result{color:white;margin-top:10px}
-
 .card-detail{
 color:white;
 text-align:left;
+padding:10px;
 }
+
+.section{
+background:rgba(255,255,255,0.15);
+padding:10px;
+margin:8px 0;
+border-radius:12px;
+}
+
+#result{color:white;margin-top:10px}
 </style>
 </head>
 
@@ -103,79 +92,74 @@ text-align:left;
 <!-- WELCOME -->
 <div id="welcome" class="hidden">
 <h1>🌸 Welcome Sharma 🌸</h1>
-<p>This portal was specially created for you.</p>
-<p>Your happiness matters here.</p>
-<button onclick="nextMood()">Continue</button>
+<p>Your happiness matters here 💖</p>
+<button onclick="goMood()">Continue</button>
 </div>
 
 <!-- MOOD -->
 <div id="mood" class="hidden">
-<h1>😊 How Are You Today?</h1>
+<h1>😊 How Are You?</h1>
 
-<div class="option" onclick="openReason()">Happy 😊</div>
-<div class="option" onclick="openReason()">Normal 😌</div>
-<div class="option" onclick="openReason()">Tired 😴</div>
-<div class="option" onclick="openReason()">Need Care 💖</div>
+<div class="option" onclick="goReason()">Happy</div>
+<div class="option" onclick="goReason()">Normal</div>
+<div class="option" onclick="goReason()">Need Care</div>
+
+<button onclick="back('welcome','mood')">⬅ Back</button>
 </div>
 
 <!-- REASON -->
 <div id="reason" class="hidden">
-<h1>💌 Why Did You Reach This Page?</h1>
+<h1>💌 Choose Action</h1>
 
-<div class="option" onclick="openBooking()">🎟️ Make Booking</div>
-<div class="option" onclick="openScratch()">🎁 Scratch Card</div>
+<div class="option" onclick="goBooking()">🎟️ Make Booking</div>
+<div class="option" onclick="goScratch()">🎁 Scratch Card</div>
+
+<button onclick="back('mood','reason')">⬅ Back</button>
 </div>
 
 <!-- BOOKING -->
 <div id="booking" class="hidden">
-<h1>🎟️ Booking Options</h1>
+<h1>🎟️ Select Service</h1>
 
-<div class="option" onclick="setType('Talk')">🗣️ I Need To Talk</div>
-<div class="option" onclick="setType('Time')">⏰ I Need Your Time</div>
-<div class="option" onclick="setType('Out')">🚶 I Want To Go Out</div>
-<div class="option" onclick="setType('Coffee')">☕ Coffee Date</div>
-<div class="option" onclick="setType('Movie')">🎬 Movie Time</div>
-<div class="option" onclick="setType('Hug')">🤗 Need A Hug</div>
+<div class="option" onclick="selectService('Talk')">🗣️ Talk</div>
+<div class="option" onclick="selectService('Time')">⏰ Time</div>
+<div class="option" onclick="selectService('Coffee')">☕ Coffee</div>
+<div class="option" onclick="selectService('Movie')">🎬 Movie</div>
 
-<button onclick="openForm()">Continue</button>
+<button onclick="showBenefits()">Continue</button>
+<button onclick="back('reason','booking')">⬅ Back</button>
 </div>
 
-<!-- FORM -->
-<div id="form" class="hidden">
-<h1>📅 Appointment</h1>
+<!-- BENEFITS -->
+<div id="benefits" class="hidden"></div>
+
+<!-- APPOINTMENT -->
+<div id="appointment" class="hidden">
+<h1>📅 Select Date & Time</h1>
 
 <input type="date" id="date">
 <input type="time" id="time">
-<textarea id="note" placeholder="Write Note"></textarea>
+<textarea id="note" placeholder="Write note"></textarea>
 
-<button onclick="book()">Book Now</button>
+<button onclick="goPayment()">Continue to Payment</button>
+<button onclick="back('benefits','appointment')">⬅ Back</button>
 </div>
 
-<!-- SCRATCH -->
-<div id="scratch" class="hidden">
-<h1>🎴 Choose Your Card</h1>
+<!-- PAYMENT -->
+<div id="payment" class="hidden">
+<h1>💳 Payment Page</h1>
 
-<div class="card" onclick="showCard('normal')">
-<div class="card-top">♠</div>
-<div>NORMAL</div>
-<div class="card-bottom">♠</div>
-</div>
+<p style="color:white">Select Payment Method (Demo)</p>
 
-<div class="card" onclick="showCard('premium')">
-<div class="card-top">♥</div>
-<div>PREMIUM</div>
-<div class="card-bottom">♥</div>
-</div>
+<select id="payMethod">
+<option>UPI</option>
+<option>Card</option>
+<option>Net Banking</option>
+</select>
 
-<div class="card" onclick="showCard('plus')">
-<div class="card-top">♦</div>
-<div>PREMIUM+</div>
-<div class="card-bottom">♦</div>
+<button onclick="payNow()">Pay Now</button>
+<button onclick="back('appointment','payment')">⬅ Back</button>
 </div>
-</div>
-
-<!-- CARD DETAILS -->
-<div id="cardDetails" class="hidden"></div>
 
 <!-- RESULT -->
 <div id="result"></div>
@@ -184,136 +168,120 @@ text-align:left;
 
 <script>
 
-let bookingType="";
+let service="";
 
-// ✅ FIXED LOGIN
+// LOGIN
 function login(){
-
-let u=document.getElementById("user").value;
-let p=document.getElementById("pass").value;
+let u=user.value;
+let p=pass.value;
 
 if((u=="sharma" && p=="1234") || (u=="vikas" && p=="1234")){
-
-document.getElementById("login").style.display="none";
-document.getElementById("welcome").style.display="block";
-
-}else{
-alert("❌ Wrong Username or Password");
-}
-
+login.style.display="none";
+welcome.style.display="block";
+}else alert("Wrong Login");
 }
 
 // FLOW
-function nextMood(){
+function goMood(){
 welcome.style.display="none";
 mood.style.display="block";
 }
 
-function openReason(){
+function goReason(){
 mood.style.display="none";
 reason.style.display="block";
 }
 
-function openBooking(){
+function goBooking(){
 reason.style.display="none";
 booking.style.display="block";
 }
 
-function openScratch(){
+function goScratch(){
 reason.style.display="none";
-scratch.style.display="block";
+result.innerHTML="🎁 Scratch Card Feature Opened";
 }
 
-// BOOKING
-function setType(t){
-bookingType=t;
+// SERVICE SELECT
+function selectService(s){
+service=s;
 }
 
-function openForm(){
+// BENEFITS
+function showBenefits(){
+
 booking.style.display="none";
-form.style.display="block";
-}
-
-function book(){
-
-let d=document.getElementById("date").value;
-let t=document.getElementById("time").value;
-
-result.innerHTML=
-"✅ Booked: "+bookingType+
-"<br>📅 Date: "+d+
-"<br>⏰ Time: "+t;
-
-form.style.display="none";
-}
-
-// CARD SYSTEM
-function showCard(type){
-
-scratch.style.display="none";
-cardDetails.style.display="block";
+benefits.style.display="block";
 
 let html="";
 
-if(type=="normal"){
+if(service=="Talk"){
 html=`
-<div class="card-detail">
-<h2>🌸 NORMAL CARD BENEFITS</h2>
-<p>💖 Understanding Your Feelings</p>
-<p>😊 Helping Improve Your Mood</p>
-<p>🌟 Motivation & Encouragement</p>
-<p>🤝 Making Sure You Are Not Alone</p>
-<p>💬 Meaningful Conversations</p>
-<p>🗣️ Fun Conversations</p>
-<hr>
-<p>✨ Positive Support Anytime</p>
-<p>📞 Helpline: 9015398473</p>
-</div>`;
+<h2>🗣️ TALK SERVICE BENEFITS</h2>
+<div class="section">💖 Emotional Support</div>
+<div class="section">😊 Mood Boosting Conversation</div>
+<div class="section">🤝 You Are Not Alone</div>
+<div class="section">💬 Deep Listening</div>
+`;
 }
 
-if(type=="premium"){
+if(service=="Coffee"){
 html=`
-<div class="card-detail">
-<h2>💎 PREMIUM CARD BENEFITS</h2>
-<p>📞 Voice & Video Call Support</p>
-<p>💖 Emotional Understanding</p>
-<p>🌸 Support in Hard Moments</p>
-<p>🤗 Care + Space Balance</p>
-<p>☕ Virtual Coffee Time</p>
-<p>🎬 Movie Sharing</p>
-<p>💌 Caring Messages</p>
-<p>⭐ Priority Response</p>
-<hr>
-<p>✨ Presence Matters More Than Anything</p>
-<p>📞 Helpline: 9015398473</p>
-</div>`;
+<h2>☕ COFFEE DATE BENEFITS</h2>
+<div class="section">☕ Relax Time</div>
+<div class="section">😊 Friendly Talk</div>
+<div class="section">🌸 Peaceful Vibes</div>
+`;
 }
 
-if(type=="plus"){
+if(service=="Movie"){
 html=`
-<div class="card-detail">
-<h2>👑 PREMIUM+ CARD BENEFITS</h2>
-<p>📍 Exclusive Personal Meet-Up Experience</p>
-<p>🤝 One-to-One Comfortable Time</p>
-<p>🌸 Real Connection & Understanding</p>
-<p>😊 Positive Vibes Together</p>
-<p>🌟 Emotional Support in Person</p>
-<p>❤️ Respectful Interaction</p>
-<p>✨ Private Quality Time</p>
-<hr>
-<p>"A premium real-life experience built on comfort & respect."</p>
-<p>📞 Helpline: 9015398473</p>
-</div>`;
+<h2>🎬 MOVIE TIME BENEFITS</h2>
+<div class="section">🎥 Watch Together</div>
+<div class="section">🍿 Fun Experience</div>
+<div class="section">💖 Enjoyment</div>
+`;
 }
 
-html+=`<br><button onclick="backToCards()">⬅ Back</button>`;
+html+=`
+<button onclick="goAppointment()">Continue</button>
+<button onclick="back('booking','benefits')">⬅ Back</button>
+`;
 
-cardDetails.innerHTML=html;
+benefits.innerHTML=html;
 }
 
-function backToCards(){
-cardDetails.style.display="none";
-scratch.style.display="block";
+// APPOINTMENT
+function goAppointment(){
+benefits.style.display="none";
+appointment.style.display="block";
+}
+
+// PAYMENT
+function goPayment(){
+appointment.style.display="none";
+payment.style.display="block";
+}
+
+function payNow(){
+
+let d=date.value;
+let t=time.value;
+
+payment.style.display="none";
+
+result.innerHTML=
+"✅ Booking Confirmed<br>" +
+"Service: "+service+"<br>" +
+"Date: "+d+"<br>" +
+"Time: "+t+"<br>" +
+"💳 Payment Success (Demo)";
+}
+
+// BACK SYSTEM
+function back(show,hide){
+document.getElementById(hide).style.display="none";
+document.getElementById(show).style.display="block";
 }
 
 </script>
