@@ -19,7 +19,7 @@ padding:15px;
 
 .box{
 width:100%;
-max-width:600px;
+max-width:650px;
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(15px);
 border-radius:20px;
@@ -28,14 +28,6 @@ text-align:center;
 }
 
 h1,h2,p{color:white}
-
-input,textarea,select{
-width:90%;
-padding:10px;
-margin:8px;
-border:none;
-border-radius:10px;
-}
 
 button{
 padding:10px 20px;
@@ -46,8 +38,6 @@ color:white;
 cursor:pointer;
 margin:5px;
 }
-
-.hidden{display:none}
 
 .option{
 background:white;
@@ -66,14 +56,35 @@ text-align:left;
 padding:10px;
 }
 
+.title{
+text-align:center;
+font-size:22px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
 .section{
 background:rgba(255,255,255,0.15);
 padding:10px;
 margin:8px 0;
 border-radius:12px;
+backdrop-filter:blur(10px);
 }
 
-#result{color:white;margin-top:10px}
+.quote{
+text-align:center;
+font-style:italic;
+margin-top:10px;
+opacity:0.9;
+}
+
+.helpline{
+text-align:center;
+margin-top:10px;
+font-weight:bold;
+}
+
+.hidden{display:none}
 </style>
 </head>
 
@@ -81,207 +92,131 @@ border-radius:12px;
 
 <div class="box">
 
-<!-- LOGIN -->
-<div id="login">
-<h1>🔐 Login</h1>
-<input id="user" placeholder="Username">
-<input id="pass" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
+<h1>🌸 Premium Portal</h1>
 
-<!-- WELCOME -->
-<div id="welcome" class="hidden">
-<h1>🌸 Welcome Sharma 🌸</h1>
-<p>Your happiness matters here 💖</p>
-<button onclick="goMood()">Continue</button>
-</div>
+<div class="option" onclick="showCard('normal')">🌸 Normal Card</div>
+<div class="option" onclick="showCard('premium')">💎 Premium Card</div>
+<div class="option" onclick="showCard('plus')">👑 Premium+ Card</div>
 
-<!-- MOOD -->
-<div id="mood" class="hidden">
-<h1>😊 How Are You?</h1>
-
-<div class="option" onclick="goReason()">Happy</div>
-<div class="option" onclick="goReason()">Normal</div>
-<div class="option" onclick="goReason()">Need Care</div>
-
-<button onclick="back('welcome','mood')">⬅ Back</button>
-</div>
-
-<!-- REASON -->
-<div id="reason" class="hidden">
-<h1>💌 Choose Action</h1>
-
-<div class="option" onclick="goBooking()">🎟️ Make Booking</div>
-<div class="option" onclick="goScratch()">🎁 Scratch Card</div>
-
-<button onclick="back('mood','reason')">⬅ Back</button>
-</div>
-
-<!-- BOOKING -->
-<div id="booking" class="hidden">
-<h1>🎟️ Select Service</h1>
-
-<div class="option" onclick="selectService('Talk')">🗣️ Talk</div>
-<div class="option" onclick="selectService('Time')">⏰ Time</div>
-<div class="option" onclick="selectService('Coffee')">☕ Coffee</div>
-<div class="option" onclick="selectService('Movie')">🎬 Movie</div>
-
-<button onclick="showBenefits()">Continue</button>
-<button onclick="back('reason','booking')">⬅ Back</button>
-</div>
-
-<!-- BENEFITS -->
-<div id="benefits" class="hidden"></div>
-
-<!-- APPOINTMENT -->
-<div id="appointment" class="hidden">
-<h1>📅 Select Date & Time</h1>
-
-<input type="date" id="date">
-<input type="time" id="time">
-<textarea id="note" placeholder="Write note"></textarea>
-
-<button onclick="goPayment()">Continue to Payment</button>
-<button onclick="back('benefits','appointment')">⬅ Back</button>
-</div>
-
-<!-- PAYMENT -->
-<div id="payment" class="hidden">
-<h1>💳 Payment Page</h1>
-
-<p style="color:white">Select Payment Method (Demo)</p>
-
-<select id="payMethod">
-<option>UPI</option>
-<option>Card</option>
-<option>Net Banking</option>
-</select>
-
-<button onclick="payNow()">Pay Now</button>
-<button onclick="back('appointment','payment')">⬅ Back</button>
-</div>
-
-<!-- RESULT -->
-<div id="result"></div>
+<!-- CARD AREA -->
+<div id="cardDetails" class="hidden"></div>
 
 </div>
 
 <script>
 
-let service="";
+let cardDetails = document.getElementById("cardDetails");
 
-// LOGIN
-function login(){
-let u=user.value;
-let p=pass.value;
+// MAIN FUNCTION
+function showCard(type){
 
-if((u=="sharma" && p=="1234") || (u=="vikas" && p=="1234")){
-login.style.display="none";
-welcome.style.display="block";
-}else alert("Wrong Login");
-}
-
-// FLOW
-function goMood(){
-welcome.style.display="none";
-mood.style.display="block";
-}
-
-function goReason(){
-mood.style.display="none";
-reason.style.display="block";
-}
-
-function goBooking(){
-reason.style.display="none";
-booking.style.display="block";
-}
-
-function goScratch(){
-reason.style.display="none";
-result.innerHTML="🎁 Scratch Card Feature Opened";
-}
-
-// SERVICE SELECT
-function selectService(s){
-service=s;
-}
-
-// BENEFITS
-function showBenefits(){
-
-booking.style.display="none";
-benefits.style.display="block";
+cardDetails.classList.remove("hidden");
 
 let html="";
 
-if(service=="Talk"){
+// 🌸 NORMAL CARD
+if(type=="normal"){
 html=`
-<h2>🗣️ TALK SERVICE BENEFITS</h2>
-<div class="section">💖 Emotional Support</div>
-<div class="section">😊 Mood Boosting Conversation</div>
-<div class="section">🤝 You Are Not Alone</div>
-<div class="section">💬 Deep Listening</div>
+<div class="card-detail">
+
+<div class="title">🌸 NORMAL CARD BENEFITS</div>
+
+<div class="section">💖 Understanding Your Feelings</div>
+<div class="section">😊 Helping Improve Your Mood</div>
+<div class="section">🌟 Motivation & Encouragement</div>
+<div class="section">🤝 Making Sure You Don't Feel Alone</div>
+<div class="section">💬 Understanding & Meaningful Conversations</div>
+<div class="section">🗣️ Fun & Casual Conversations</div>
+
+<hr>
+
+<div class="quote">
+"Understanding, motivation, and positive conversations whenever you need them." ✨
+</div>
+
+<div class="helpline">📞 Helpline: 9015398473</div>
+
+</div>
 `;
 }
 
-if(service=="Coffee"){
+// 💎 PREMIUM CARD
+if(type=="premium"){
 html=`
-<h2>☕ COFFEE DATE BENEFITS</h2>
-<div class="section">☕ Relax Time</div>
-<div class="section">😊 Friendly Talk</div>
-<div class="section">🌸 Peaceful Vibes</div>
+<div class="card-detail">
+
+<div class="title">💎 PREMIUM CARD BENEFITS</div>
+
+<div class="section">📞 Voice & Video Call Support</div>
+<div class="section">⏳ Long Voice & Video Calls</div>
+<div class="section">💖 Deep Listening Without Judgment</div>
+<div class="section">🌸 Calm Emotional Support</div>
+<div class="section">🤗 Always There For Comfort</div>
+<div class="section">😊 Positive Conversations & Mood Boost</div>
+<div class="section">🎵 Music & Feel-Good Sharing</div>
+<div class="section">💌 Thoughtful & Caring Messages</div>
+<div class="section">🌟 Motivation & Emotional Encouragement</div>
+<div class="section">❤️ Priority Attention</div>
+<div class="section">🌷 Gentle Care & Support</div>
+<div class="section">✨ Respect & Emotional Stability</div>
+
+<hr>
+
+<div class="quote">
+"More time, more care, and more understanding whenever you need it." 💖
+</div>
+
+<div class="helpline">📞 Helpline: 9015398473</div>
+
+</div>
 `;
 }
 
-if(service=="Movie"){
+// 👑 PREMIUM+
+if(type=="plus"){
 html=`
-<h2>🎬 MOVIE TIME BENEFITS</h2>
-<div class="section">🎥 Watch Together</div>
-<div class="section">🍿 Fun Experience</div>
-<div class="section">💖 Enjoyment</div>
+<div class="card-detail">
+
+<div class="title">👑 PREMIUM+ CARD BENEFITS</div>
+
+<div class="section">📍 Exclusive Personal Meet-Up Experience</div>
+<div class="section">🤝 One-to-One Comfortable Time</div>
+<div class="section">🌸 Real Connection & Understanding</div>
+<div class="section">😊 Positive Company & Good Vibes</div>
+<div class="section">🌟 Emotional Support in Person</div>
+<div class="section">❤️ Respectful Interaction</div>
+<div class="section">✨ Private & Quality Time</div>
+
+<div class="section">💬 Deep Meaningful Conversations</div>
+<div class="section">🌙 Relaxed Stress-Free Experience</div>
+<div class="section">🛡️ Safe & Comfortable Environment</div>
+<div class="section">🎯 Full Attention & Priority Care</div>
+<div class="section">💖 Emotional Stability & Comfort</div>
+
+<hr>
+
+<div class="quote">
+"A premium real-life experience built on comfort, respect, and genuine connection." ✨
+</div>
+
+<div class="helpline">📞 Helpline: 9015398473</div>
+
+</div>
 `;
 }
 
+// CLOSE BUTTON
 html+=`
-<button onclick="goAppointment()">Continue</button>
-<button onclick="back('booking','benefits')">⬅ Back</button>
+<br>
+<button onclick="back()">⬅ Back</button>
 `;
 
-benefits.innerHTML=html;
+cardDetails.innerHTML=html;
 }
 
-// APPOINTMENT
-function goAppointment(){
-benefits.style.display="none";
-appointment.style.display="block";
-}
-
-// PAYMENT
-function goPayment(){
-appointment.style.display="none";
-payment.style.display="block";
-}
-
-function payNow(){
-
-let d=date.value;
-let t=time.value;
-
-payment.style.display="none";
-
-result.innerHTML=
-"✅ Booking Confirmed<br>" +
-"Service: "+service+"<br>" +
-"Date: "+d+"<br>" +
-"Time: "+t+"<br>" +
-"💳 Payment Success (Demo)";
-}
-
-// BACK SYSTEM
-function back(show,hide){
-document.getElementById(hide).style.display="none";
-document.getElementById(show).style.display="block";
+// BACK FUNCTION
+function back(){
+cardDetails.classList.add("hidden");
 }
 
 </script>
