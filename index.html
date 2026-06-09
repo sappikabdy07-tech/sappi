@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharma's Private Portal</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 8px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+h2{
+    color:#fff;
+    margin-bottom:20px;
+    font-weight:400;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    margin:10px 0;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+button{
+    background:#ff4f81;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.hidden{
+    display:none;
+}
+
+.option{
+    background:white;
+    padding:12px;
+    margin:10px 0;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#ffe4ef;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div id="welcome">
+<h1>🌸 Welcome Sharma 🌸</h1>
+<h2>Your Private Premium Portal</h2>
+<button onclick="next1()">Continue</button>
+</div>
+
+<div id="mood" class="hidden">
+<h1>😊 How Are You Today?</h1>
+
+<div class="option" onclick="next2()">Happy 😊</div>
+<div class="option" onclick="next2()">Normal 😌</div>
+<div class="option" onclick="next2()">Tired 😴</div>
+<div class="option" onclick="next2()">Need Care 💖</div>
+</div>
+
+<div id="reason" class="hidden">
+<h1>💌 Why Did You Reach This Page?</h1>
+
+<div class="option">🎟️ Make Booking</div>
+<div class="option">🎁 Scratch Card</div>
+<div class="option">💌 Special Message</div>
+<div class="option">🎉 Surprise</div>
+</div>
+
+</div>
+
+<script>
+
+function next1(){
+document.getElementById("welcome").classList.add("hidden");
+document.getElementById("mood").classList.remove("hidden");
+}
+
+function next2(){
+document.getElementById("mood").classList.add("hidden");
+document.getElementById("reason").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
