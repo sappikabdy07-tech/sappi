@@ -199,7 +199,7 @@ id="welcome"
 class="hidden">
 
 <h1>
-🌸 WELCOME SAPNA 🌸
+🌸WELCOME SAPNA🌸
 </h1>
 
 <p>
@@ -435,7 +435,7 @@ class="hidden">
 
 <div
 class="card"
-onclick="showCard('normal')">
+onclick="showCard('NORMAL')">
 
 <div>♠</div>
 
@@ -449,7 +449,7 @@ onclick="showCard('normal')">
 
 <div
 class="card"
-onclick="showCard('premium')">
+onclick="showCard('PRIMIUM')">
 
 <div>♥</div>
 
@@ -463,7 +463,7 @@ onclick="showCard('premium')">
 
 <div
 class="card"
-onclick="showCard('plus')">
+onclick="showCard('PRIMIUN PLUS')">
 
 <div>♦</div>
 
@@ -635,7 +635,7 @@ let html="";
 
 // NORMAL
 
-if(type==="normal"){
+if(type==="NORMAL"){
 
 html=`
 
@@ -679,7 +679,7 @@ Continue ➜
 
 // PREMIUM
 
-if(type==="premium"){
+if(type==="PRIMIUM"){
 
 html=`
 
@@ -697,7 +697,7 @@ html=`
 
 <div class="section">😊 Mood Uplift & Positive Conversations</div>
 
-<div class="section">🎵 Music, Stories & Feel-Good Content Sharing</div>
+<div class="section">🗣️ Talk About Anything</div>
 
 <div class="section">💌 Thoughtful & Caring Messages</div>
 
@@ -708,6 +708,8 @@ html=`
 <div class="section">🌷 Period Care & Gentle Comfort Support</div>
 
 <div class="section">✨ Respect, Care & Emotional Stability</div>
+
+<div class="section">💕 Romantic Conversations</div>
 
 <div class="quote">
 
@@ -735,35 +737,31 @@ Continue ➜
 
 // PREMIUM+
 
-if(type==="plus"){
+if(type==="PRIMIUM PLUS"){
 
 html=`
 
 <h2>👑 PREMIUM+ CARD BENEFITS</h2>
 
-<div class="section">📍 Exclusive Personal Meet-Up Experience</div>
+  <div class="section">📍 Exclusive Personal Meet-Up Experience</div>
 
-<div class="section">🤝 One-to-One Comfortable Time</div>
+  <div class="section">🤝 One-to-One Quality Time</div>
 
-<div class="section">🌸 Real Connection & Understanding</div>
+  <div class="section">🌸 Real Connection & Genuine Understanding</div>
 
-<div class="section">😊 Positive Company & Good Vibes Together</div>
+  <div class="section">😊 Positive Company & Good Vibes Together</div>
 
-<div class="section">🌟 Motivation, Care & Emotional Support In Person</div>
+  <div class="section">🌟 Motivation, Care & Emotional Support In Person</div>
 
-<div class="section">❤️ Respectful Interaction & Mutual Comfort</div>
+  <div class="section">❤️ Respectful Interaction & Mutual Comfort</div>
 
-<div class="section">✨ Quality Time With Full Privacy & Respect</div>
+  <div class="section">✨ Quality Time With Privacy & Respect</div>
 
-<div class="section">💬 Deep Meaningful Conversations</div>
+  <div class="section">💬 Open & Honest Conversations</div>
 
-<div class="section">🌙 Relaxed Stress-Free Experience</div>
+  <div class="section">🫶 A Comfortable & Friendly Environment</div>
 
-<div class="section">🛡️ Safe & Comfortable Environment</div>
-
-<div class="section">🎯 Full Attention & Priority Care</div>
-
-<div class="section">💖 Emotional Stability & Comfort</div>
+  <div class="section">🌈 Memorable Moments Together</div>
 
 <div class="quote">
 
@@ -825,7 +823,7 @@ let message=
 
 🎴 Card: ${selectedCard || "Not Selected"}
 
-🎟️ Booking Type: ${bookingType || "Card Selection"}
+🎟️ Booking Type: ${bookingType || "Not Selected"}
 
 📅 Date: ${d}
 
@@ -835,7 +833,7 @@ let message=
 
 📝 Note: ${n}
 
-💖 Sharma Premium Portal`;
+💖 Sapna Premium Portal`;
 
 window.open(
 `https://wa.me/919015398473?text=${encodeURIComponent(message)}`,
