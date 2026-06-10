@@ -15,22 +15,22 @@ font-family:'Segoe UI',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 padding:15px;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
 }
 
 .container{
 width:100%;
-max-width:420px;
+max-width:430px;
 background:rgba(255,255,255,.15);
-backdrop-filter:blur(15px);
+backdrop-filter:blur(18px);
 border-radius:25px;
 padding:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
+box-shadow:0 10px 30px rgba(0,0,0,.25);
 text-align:center;
 }
 
@@ -41,7 +41,7 @@ display:none;
 h1{
 color:white;
 font-size:28px;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
 h2{
@@ -52,43 +52,113 @@ margin-bottom:15px;
 p{
 color:white;
 margin-bottom:10px;
+line-height:1.5;
 }
 
-input,textarea,select{
+input,
+textarea,
+select{
 width:100%;
 padding:12px;
+margin:8px 0;
 border:none;
 border-radius:12px;
-margin:8px 0;
+outline:none;
 }
 
 button{
 width:100%;
 padding:12px;
-background:#ff4f81;
-color:white;
+margin-top:10px;
 border:none;
 border-radius:12px;
+background:#ff4f81;
+color:white;
 font-size:16px;
 cursor:pointer;
-margin-top:10px;
+}
+
+.backBtn{
+background:#555;
 }
 
 .option{
 background:white;
 padding:14px;
-border-radius:15px;
+border-radius:14px;
 margin:10px 0;
-font-weight:bold;
 cursor:pointer;
+font-weight:bold;
+transition:.3s;
 }
 
 .option:hover{
-transform:scale(1.02);
+transform:scale(1.03);
 }
 
-.back-btn{
-background:#555;
+.cardArea{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.card{
+width:110px;
+height:170px;
+background:white;
+border-radius:15px;
+border:3px solid #222;
+padding:10px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+cursor:pointer;
+font-weight:bold;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.top{
+font-size:24px;
+}
+
+.bottom{
+font-size:24px;
+transform:rotate(180deg);
+}
+
+.middle{
+font-size:14px;
+}
+
+.section{
+background:rgba(255,255,255,.15);
+padding:10px;
+border-radius:12px;
+margin:8px 0;
+color:white;
+}
+
+.quote{
+color:white;
+text-align:center;
+margin-top:10px;
+font-style:italic;
+}
+
+.helpline{
+color:white;
+text-align:center;
+margin-top:10px;
+font-weight:bold;
+}
+
+#result{
+color:white;
+margin-top:15px;
 }
 
 </style>
@@ -109,7 +179,7 @@ background:#555;
 
 <button onclick="loginUser()">Login</button>
 
-<p style="margin-top:15px;">
+<p>
 Username: sharma / vikas<br>
 Password: 1234
 </p>
@@ -120,7 +190,7 @@ Password: 1234
 
 <div id="welcome" class="hidden">
 
-<h1>🌸WELCOME SAPNA🌸</h1>
+<h1>🌸 Welcome Sharma 🌸</h1>
 
 <p>This portal was specially created for you.</p>
 
@@ -154,7 +224,8 @@ Tired 😴
 Need Care 💖
 </div>
 
-<button class="back-btn" onclick="showPage('welcome','mood')">
+<button class="backBtn"
+onclick="showPage('welcome','mood')">
 ⬅ Back
 </button>
 
@@ -174,12 +245,12 @@ Need Care 💖
 🎁 Scratch Card
 </div>
 
-<button class="back-btn" onclick="showPage('mood','reason')">
+<button class="backBtn"
+onclick="showPage('mood','reason')">
 ⬅ Back
 </button>
 
 </div>
-
 <!-- BOOKING -->
 
 <div id="booking" class="hidden">
@@ -190,7 +261,7 @@ Need Care 💖
 🗣️ I Need To Talk
 </div>
 
-<div class="option" onclick="bookService('Need Time')">
+<div class="option" onclick="bookService('Need Your Time')">
 ⏰ I Need Your Time
 </div>
 
@@ -210,11 +281,13 @@ Need Care 💖
 🤗 Need A Hug
 </div>
 
-<button class="back-btn" onclick="showPage('reason','booking')">
+<button class="backBtn"
+onclick="showPage('reason','booking')">
 ⬅ Back
 </button>
 
 </div>
+
 <!-- APPOINTMENT -->
 
 <div id="appointment" class="hidden">
@@ -233,7 +306,7 @@ placeholder="Write Your Message">
 Continue
 </button>
 
-<button class="back-btn"
+<button class="backBtn"
 onclick="goBackPrevious()">
 ⬅ Back
 </button>
@@ -244,11 +317,7 @@ onclick="goBackPrevious()">
 
 <div id="payment" class="hidden">
 
-<h2>💳 Payment</h2>
-
-<p>
-Select Payment Method
-</p>
+<h2>💳 Make Payment</h2>
 
 <select>
 
@@ -264,20 +333,20 @@ Select Payment Method
 Confirm Order
 </button>
 
-<button class="back-btn"
+<button class="backBtn"
 onclick="showPage('appointment','payment')">
 ⬅ Back
 </button>
 
 </div>
 
-<!-- SCRATCH CARDS -->
+<!-- SCRATCH CARD -->
 
 <div id="scratch" class="hidden">
 
 <h2>🎴 Choose Your Card</h2>
 
-<div class="card-box">
+<div class="cardArea">
 
 <div class="card"
 onclick="showCard('normal')">
@@ -326,7 +395,7 @@ onclick="showCard('plus')">
 
 </div>
 
-<button class="back-btn"
+<button class="backBtn"
 onclick="showPage('reason','scratch')">
 ⬅ Back
 </button>
@@ -344,73 +413,6 @@ class="hidden">
 <div id="result"></div>
 
 </div>
-
-<style>
-
-.card-box{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-}
-
-.card{
-width:110px;
-height:170px;
-background:white;
-border-radius:15px;
-border:3px solid #222;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-padding:10px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.top{
-font-size:22px;
-}
-
-.bottom{
-font-size:22px;
-transform:rotate(180deg);
-}
-
-.middle{
-font-size:14px;
-}
-
-.section{
-background:rgba(255,255,255,.15);
-padding:10px;
-margin:8px 0;
-border-radius:12px;
-color:white;
-}
-
-.card-detail{
-text-align:left;
-color:white;
-}
-
-.quote{
-margin-top:10px;
-font-style:italic;
-text-align:center;
-}
-
-.helpline{
-margin-top:10px;
-text-align:center;
-font-weight:bold;
-}
-
-</style>
 <script>
 
 let bookingType="";
@@ -441,7 +443,7 @@ alert("Wrong Username or Password");
 
 }
 
-// PAGE SWITCH
+// PAGE CHANGE
 
 function showPage(show,hide){
 
@@ -450,8 +452,6 @@ document.getElementById(hide).style.display="none";
 document.getElementById(show).style.display="block";
 
 }
-
-// FLOW
 
 function openMood(){
 
@@ -489,42 +489,6 @@ showPage("appointment","booking");
 
 }
 
-// CARD CONTINUE
-
-function continueCard(){
-
-previousPage="scratch";
-
-document.getElementById("cardDetails").style.display="none";
-
-document.getElementById("appointment").style.display="block";
-
-}
-
-// APPOINTMENT
-
-function openPayment(){
-
-showPage("payment","appointment");
-
-}
-
-function goBackPrevious(){
-
-document.getElementById("appointment").style.display="none";
-
-if(previousPage==="booking"){
-
-document.getElementById("booking").style.display="block";
-
-}else{
-
-document.getElementById("scratch").style.display="block";
-
-}
-
-}
-
 // CARD DETAILS
 
 function showCard(type){
@@ -537,7 +501,7 @@ document.getElementById("cardDetails").style.display="block";
 
 let html="";
 
-// NORMAL
+// NORMAL CARD
 
 if(type==="normal"){
 
@@ -548,10 +512,15 @@ html=`
 <h2>🌸 NORMAL CARD BENEFITS</h2>
 
 <div class="section">💖 Understanding Your Feelings</div>
+
 <div class="section">😊 Helping Improve Your Mood</div>
+
 <div class="section">🌟 Motivation & Encouragement</div>
+
 <div class="section">🤝 Making Sure You Don't Feel Alone</div>
+
 <div class="section">💬 Understanding & Meaningful Conversations</div>
+
 <div class="section">🗣️ Fun & Casual Conversations</div>
 
 <div class="quote">
@@ -578,7 +547,7 @@ html=`
 
 }
 
-// PREMIUM
+// PREMIUM CARD
 
 if(type==="premium"){
 
@@ -589,18 +558,28 @@ html=`
 <h2>💎 PREMIUM CARD BENEFITS</h2>
 
 <div class="section">📞 Voice & Video Call Support</div>
+
 <div class="section">⏳ Long Voice & Video Calls</div>
+
 <div class="section">💖 Deep Listening Without Judgment</div>
+
 <div class="section">🌸 Calm Emotional Support</div>
+
 <div class="section">🤗 Always There For Comfort</div>
+
 <div class="section">😊 Positive Conversations & Mood Boost</div>
-<div class="section">🗣️ Freedom To Say Anything</div>
+
+<div class="section">🎵 Music & Feel-Good Sharing</div>
+
 <div class="section">💌 Caring Messages Anytime</div>
+
 <div class="section">🌟 Motivation & Emotional Support</div>
+
 <div class="section">❤️ Priority Attention</div>
-<div class="section">🌷 Periods Care & Support</div>
+
+<div class="section">🌷 Gentle Care & Support</div>
+
 <div class="section">✨ Respect & Emotional Stability</div>
-<div class="section">💕 Romantic Conversations</div>
 
 <div class="quote">
 
@@ -637,11 +616,17 @@ html=`
 <h2>👑 PREMIUM+ CARD BENEFITS</h2>
 
 <div class="section">📍 Exclusive Personal Meet-Up Experience</div>
+
 <div class="section">🤝 One-to-One Comfortable Time</div>
+
 <div class="section">🌸 Real Connection & Understanding</div>
+
 <div class="section">😊 Positive Company & Good Vibes</div>
+
 <div class="section">🌟 Emotional Support in Person</div>
+
 <div class="section">❤️ Respectful Interaction</div>
+
 <div class="section">✨ Private & Quality Time</div>
 
 <div class="quote">
@@ -672,6 +657,18 @@ document.getElementById("cardDetails").innerHTML=html;
 
 }
 
+// CARD CONTINUE
+
+function continueCard(){
+
+previousPage="scratch";
+
+document.getElementById("cardDetails").style.display="none";
+
+document.getElementById("appointment").style.display="block";
+
+}
+
 // BACK TO CARDS
 
 function backToCards(){
@@ -682,7 +679,32 @@ document.getElementById("scratch").style.display="block";
 
 }
 
-// CONFIRM ORDER
+// APPOINTMENT
+
+function openPayment(){
+
+showPage("payment","appointment");
+
+}
+
+function goBackPrevious(){
+
+document.getElementById("appointment").style.display="none";
+
+if(previousPage==="booking"){
+
+document.getElementById("booking").style.display="block";
+
+}
+else{
+
+document.getElementById("scratch").style.display="block";
+
+}
+
+}
+
+// CONFIRM + WHATSAPP
 
 function confirmBooking(){
 
@@ -692,23 +714,44 @@ let t=document.getElementById("time").value;
 
 let n=document.getElementById("note").value;
 
+let message=
+
+`🌸 New Booking Request
+
+🎴 Card: ${selectedCard || "Not Selected"}
+
+🎟️ Booking Type: ${bookingType || "Not Selected"}
+
+📅 Date: ${d}
+
+⏰ Time: ${t}
+
+📝 Note: ${n}
+
+💖 Sharma Premium Portal`;
+
+window.open(
+`https://wa.me/919015398473?text=${encodeURIComponent(message)}`,
+'_blank'
+);
+
 document.getElementById("payment").style.display="none";
 
 document.getElementById("result").innerHTML=`
 
 <h2>✅ Order Confirmed</h2>
 
-<p><b>Selected Card:</b> ${selectedCard || "Not Selected"}</p>
+<p>Selected Card: ${selectedCard || "Not Selected"}</p>
 
-<p><b>Booking Type:</b> ${bookingType || "Not Selected"}</p>
+<p>Booking Type: ${bookingType || "Not Selected"}</p>
 
-<p><b>Date:</b> ${d}</p>
+<p>Date: ${d}</p>
 
-<p><b>Time:</b> ${t}</p>
+<p>Time: ${t}</p>
 
-<p><b>Message:</b> ${n}</p>
+<p>Message: ${n}</p>
 
-<p>💖 Thank You For Booking</p>
+<p>📲 WhatsApp Opened Successfully</p>
 
 `;
 
